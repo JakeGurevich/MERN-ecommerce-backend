@@ -5,6 +5,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const Colors = require("colors");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 const { notFound } = require("./middleware/errorMiddleware");
 const { errorHandler } = require("./middleware/errorMiddleware");
 dotenv.config();
@@ -15,7 +16,9 @@ const app = express();
 const Port = process.env.PORT || 6000;
 
 app.use(cors());
+app.use(express.json());
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
